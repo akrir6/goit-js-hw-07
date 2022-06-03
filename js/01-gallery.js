@@ -26,12 +26,14 @@ galleryRef.addEventListener('click', getModal);
 let modal;
 
 function getModal(event) {
-  event.preventDefault();
-  modal = basicLightbox.create(`<img src="${event.target.dataset.source}">`, {
-    onShow: () => window.addEventListener('keydown', closeModalOnEscKey),
-    onClose: () => window.removeEventListener('keydown', closeModalOnEscKey),
-  });
-  modal.show();
+  if (event.target.dataset.source) {
+    event.preventDefault();
+    modal = basicLightbox.create(`<img src="${event.target.dataset.source}">`, {
+      onShow: () => window.addEventListener('keydown', closeModalOnEscKey),
+      onClose: () => window.removeEventListener('keydown', closeModalOnEscKey),
+    });
+    modal.show();
+  }
 }
 
 function closeModalOnEscKey(event) {
